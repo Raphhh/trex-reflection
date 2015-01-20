@@ -84,7 +84,7 @@ $reflect->getClosure(); //closure
 
 #### Function
 ```php
-$reflect = CallableReflection('in_array')
+$reflect = new CallableReflection('in_array')
 $reflect->getFunctionName(); //'in_array'
 ```
 
@@ -130,7 +130,7 @@ You can invoke every kind of callable in a same way.
 This method calls the method and give to it all its args.
 
 ```php
-$reflect = CallableReflection('in_array')
+$reflect = new CallableReflection('in_array')
 $reflect->invoke(1, [0, 1]); //true
 ```
 
@@ -139,7 +139,7 @@ $reflect->invoke(1, [0, 1]); //true
 This method allows to map each value of an array with every params of a function. Useful to use dynamic args with func_get_args().
 
 ```php
-$reflect = CallableReflection('in_array')
+$reflect = new CallableReflection('in_array')
 $reflect->invoke([1, [0, 1]]); //true
 ```
 
@@ -153,6 +153,6 @@ $closure = function($arg1, $arg2){
     return [$arg1, $arg2];
 }
 
-$reflect = CallableReflection('in_array')
+$reflect = new CallableReflection($closure)
 $reflect->invokeA(['arg2' => 'arg2', 'arg1' => 'arg1'])); //['arg1', 'arg2']
 ```
