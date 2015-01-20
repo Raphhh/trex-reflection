@@ -1,7 +1,6 @@
 <?php
 namespace TRex\Reflection;
 
-
 /**
  * Class CallableReflection
  * Callable Reflection: You can reflect a callback and know its type.
@@ -146,7 +145,7 @@ class CallableReflection
      */
     public function getType()
     {
-        if (is_null($this->type)) {
+        if (null === $this->type) {
             $this->initType();
         }
         return $this->type;
@@ -246,8 +245,7 @@ class CallableReflection
     public function getMethodName()
     {
         if ($this->isMethod()) {
-            $callable = $this->explodeCallable();
-            return $callable[1];
+            return $this->explodeCallable()[1];
         }
         return '';
     }
@@ -277,8 +275,7 @@ class CallableReflection
     public function getObject()
     {
         if ($this->isInstanceMethod() || $this->isInvokedObject()) {
-            $callable = $this->explodeCallable();
-            return $callable[0];
+            return $this->explodeCallable()[0];
         }
         return null;
     }
@@ -302,11 +299,11 @@ class CallableReflection
     {
         if (is_string($this->getCallable())) {
             return explode('::', $this->getCallable());
-        } elseif (is_array($this->getCallable())) {
-            return $this->getCallable();
-        } else {
-            return array($this->getCallable());
         }
+        if (is_array($this->getCallable())) {
+            return $this->getCallable();
+        }
+        return array($this->getCallable());
     }
 
     /**
