@@ -1,0 +1,25 @@
+{
+    "name": "raphhh/trex-reflection",
+    "description": "Reflection helpers",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Raphaël Lefebvre",
+            "email": "raphael@raphaellefebvre.be"
+        }
+    ],
+    "keywords": ["reflection"],
+    "homepage": "https://github.com/Raphhh/trex-reflection",
+    "autoload": {
+        "psr-4": {
+            "TRex\\Reflection\\": ["src/", "tests/"]
+        }
+    },
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "@stable"
+    }
+}
