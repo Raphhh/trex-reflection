@@ -360,7 +360,9 @@ class CallableReflection
         foreach ($this->getReflector()->getParameters() as $position => $reflectedParam) {
             if (array_key_exists($reflectedParam->name, $args)) {
                 $params[$position] = $args[$reflectedParam->name];
-            } elseif (!$reflectedParam->isOptional()) {
+            } elseif ($reflectedParam->isOptional()) {
+                $params[$position] = $reflectedParam->getDefaultValue();
+            } else {
                 throw new \InvalidArgumentException(
                     sprintf(
                         'Missing key "%s" for the %sth params of %s',

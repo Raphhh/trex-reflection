@@ -133,40 +133,46 @@ class CallableReflectionTest extends \PHPUnit_Framework_TestCase
     public function testInvokeAForClosure()
     {
         $reflectedCallable = new CallableReflection($this->getClosure());
-        $this->assertSame(array(2, 1), $reflectedCallable->invokeA(array('b' => 1, 'a' => 2)));
+        $this->assertSame(array(2, 1, 3, 4), $reflectedCallable->invokeA(array('b' => 1, 'a' => 2)));
     }
 
     public function testInvokeAForInstanceMethod()
     {
         $reflectedCallable = new CallableReflection($this->getInstanceMethod());
-        $this->assertSame(array(2, 1), $reflectedCallable->invokeA(array('b' => 1, 'a' => 2)));
+        $this->assertSame(array(2, 1, 3, 4), $reflectedCallable->invokeA(array('b' => 1, 'a' => 2)));
     }
 
     public function testInvokeAForStaticMethod()
     {
         $reflectedCallable = new CallableReflection($this->getStaticMethod1());
-        $this->assertSame(array(2, 1), $reflectedCallable->invokeA(array('b' => 1, 'a' => 2)));
+        $this->assertSame(array(2, 1, 3, 4), $reflectedCallable->invokeA(array('b' => 1, 'a' => 2)));
 
         $reflectedCallable = new CallableReflection($this->getStaticMethod2());
-        $this->assertSame(array(2, 1), $reflectedCallable->invokeA(array('b' => 1, 'a' => 2)));
+        $this->assertSame(array(2, 1, 3, 4), $reflectedCallable->invokeA(array('b' => 1, 'a' => 2)));
     }
 
     public function testInvokeAForInvokedObject()
     {
         $reflectedCallable = new CallableReflection($this->getInvokedObject());
-        $this->assertSame(array(2, 1), $reflectedCallable->invokeA(array('b' => 1, 'a' => 2)));
+        $this->assertSame(array(2, 1, 3, 4), $reflectedCallable->invokeA(array('b' => 1, 'a' => 2)));
     }
 
     public function testInvokeAWithOptionalParameter()
     {
         $reflectedCallable = new CallableReflection($this->getInstanceMethod());
-        $this->assertSame(array(2, 1, 3), $reflectedCallable->invokeA(array('b' => 1, 'a' => 2, 'c' => 3)));
+        $this->assertSame(array(2, 1, 5, 4), $reflectedCallable->invokeA(array('b' => 1, 'a' => 2, 'c' => 5)));
+    }
+
+    public function testInvokeAWithNotFirstOptionalParameter()
+    {
+        $reflectedCallable = new CallableReflection($this->getInstanceMethod());
+        $this->assertSame(array(2, 1, 3, 5), $reflectedCallable->invokeA(array('b' => 1, 'a' => 2, 'd' => 5)));
     }
 
     public function testInvokeAWithUndeclaredParameter()
     {
         $reflectedCallable = new CallableReflection($this->getInstanceMethod());
-        $this->assertSame(array(2, 1), $reflectedCallable->invokeA(array('b' => 1, 'a' => 2, 'd' => 4)));
+        $this->assertSame(array(2, 1, 3, 4), $reflectedCallable->invokeA(array('b' => 1, 'a' => 2, 'e' => 6)));
     }
 
     /**
@@ -254,28 +260,28 @@ class CallableReflectionTest extends \PHPUnit_Framework_TestCase
     public function testInvokeAStaticForClosure()
     {
         $reflectedCallable = new CallableReflection($this->getClosure());
-        $this->assertSame(array(2, 1), $reflectedCallable->invokeAStatic(array('b' => 1, 'a' => 2)));
+        $this->assertSame(array(2, 1, 3, 4), $reflectedCallable->invokeAStatic(array('b' => 1, 'a' => 2)));
     }
 
     public function testInvokeAStaticForInstanceMethod()
     {
         $reflectedCallable = new CallableReflection($this->getInstanceMethod());
-        $this->assertSame(array(2, 1), $reflectedCallable->invokeAStatic(array('b' => 1, 'a' => 2)));
+        $this->assertSame(array(2, 1, 3, 4), $reflectedCallable->invokeAStatic(array('b' => 1, 'a' => 2)));
     }
 
     public function testInvokeAStaticForStaticMethod()
     {
         $reflectedCallable = new CallableReflection($this->getStaticMethod1());
-        $this->assertSame(array(2, 1), $reflectedCallable->invokeAStatic(array('b' => 1, 'a' => 2)));
+        $this->assertSame(array(2, 1, 3, 4), $reflectedCallable->invokeAStatic(array('b' => 1, 'a' => 2)));
 
         $reflectedCallable = new CallableReflection($this->getStaticMethod2());
-        $this->assertSame(array(2, 1), $reflectedCallable->invokeAStatic(array('b' => 1, 'a' => 2)));
+        $this->assertSame(array(2, 1, 3, 4), $reflectedCallable->invokeAStatic(array('b' => 1, 'a' => 2)));
     }
 
     public function testInvokeAStaticForInvokedObject()
     {
         $reflectedCallable = new CallableReflection($this->getInvokedObject());
-        $this->assertSame(array(2, 1), $reflectedCallable->invokeAStatic(array('b' => 1, 'a' => 2)));
+        $this->assertSame(array(2, 1, 3, 4), $reflectedCallable->invokeAStatic(array('b' => 1, 'a' => 2)));
     }
 
     public function testGetTypeForFunction()
@@ -655,7 +661,7 @@ class CallableReflectionTest extends \PHPUnit_Framework_TestCase
      */
     private function getClosure()
     {
-        return function ($a, $b, $c = 3) {
+        return function ($a, $b, $c = 3, $d = 4) {
             return func_get_args();
         };
     }
