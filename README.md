@@ -22,6 +22,9 @@ $ composer require raphhh/trex-reflection
 
 ## Documentation
 
+ - [CallableReflection](#callablereflection)
+ - [TypeReflection](typereflection)
+ 
 ### CallableReflection
 
 You can use CallableReflection to inspect and call a callable, like a callback or a Closure for example.
@@ -162,6 +165,8 @@ $reflect->invokeA(['arg2' => 'arg2', 'arg1' => 'arg1'])); //['arg1', 'arg2']
 
 Reflection on the type of a variable or function. 
 
+#### What is a type?
+
 A type is a string returned by [gettype](http://php.net/manual/en/function.gettype.php) function. 
 
 ```php
@@ -171,7 +176,7 @@ gettype($var); //"string"
 
 We can also found it in the PHP doc comment. 
 
-```
+```php
 /**
  * @var int
  */
@@ -180,6 +185,8 @@ We can also found it in the PHP doc comment.
  ```
 
 Note the `TypeReflection` is case insensitive.
+
+#### Standardized types
 
 `TypeReflection` standardizes types with following values:
 
