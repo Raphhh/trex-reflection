@@ -23,7 +23,7 @@ $ composer require raphhh/trex-reflection
 ## Documentation
 
  - [CallableReflection](#callablereflection)
- - [TypeReflection](typereflection)
+ - [TypeReflection](#typereflection)
  
 ### CallableReflection
 
