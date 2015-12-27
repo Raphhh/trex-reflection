@@ -1,6 +1,6 @@
 {
     "name": "raphhh/trex-reflection",
-    "description": "Reflection helpers",
+    "description": "Reflection helpers for callables and types",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -9,7 +9,7 @@
             "email": "raphael@raphaellefebvre.be"
         }
     ],
-    "keywords": ["reflection"],
+    "keywords": ["reflection", "type", "callable"],
     "homepage": "https://github.com/Raphhh/trex-reflection",
     "autoload": {
         "psr-4": {
