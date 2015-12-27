@@ -56,7 +56,7 @@ class CallableReflection
     /**
      * Returns the appropriate class of the callable reflection.
      *
-     * @return \ReflectionClass|\ReflectionFunction|\ReflectionMethod
+     * @return \ReflectionFunctionAbstract
      * @throws \LogicException
      */
     public function getReflector()
