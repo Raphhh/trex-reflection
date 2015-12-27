@@ -160,6 +160,40 @@ $reflect = new CallableReflection($closure)
 $reflect->invokeA(['arg2' => 'arg2', 'arg1' => 'arg1'])); //['arg1', 'arg2']
 ```
 
+#### Retrieve the associated reflection class
+
+Retrieve the [ReflectionFunctionAbstract](http://php.net/manual/en/class.reflectionfunction.php) of the callable. 
+
+##### For a function or a closure
+
+```php
+$reflect = new CallableReflection('in_array');
+$reflect->getReflector(); //ReflectionFunction
+```
+
+##### For a method
+
+```php
+$reflect = new CallableReflection(array('\DateTime', 'createFromFormat'));
+$reflect->getReflector(); //ReflectionMethod
+```
+
+##### For a class
+
+Note that for a class, we get a `ReflectionMethod` for the `__invoke` method of the current object, and not a `ReflectionClass`.
+
+
+```php
+
+class Bar{
+    function __invoke(){}
+}
+
+$reflect = new CallableReflection(new Bar());
+$reflect->getReflector(); //ReflectionMethod
+```
+
+
 
 ### TypeReflection
 
