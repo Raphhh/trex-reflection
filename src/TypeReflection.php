@@ -99,6 +99,15 @@ class TypeReflection
     private $enableAutoload;
 
     /**
+     * @param mixed $variable
+     * @return TypeReflection
+     */
+    public static function createFromVariable($variable)
+    {
+        return new self(is_object($variable) ? get_class($variable) : strtolower(gettype($variable)));
+    }
+
+    /**
      * Constructor.
      *
      * @param string $type Reflected type or class name

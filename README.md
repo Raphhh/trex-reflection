@@ -201,22 +201,22 @@ Reflection on the type of a variable or function.
 
 #### What is a type?
 
-A type is a string returned by [gettype](http://php.net/manual/en/function.gettype.php) function. 
+A type is a string defined by a specific value related to one of the [PHP types](http://php.net/manual/en/language.types.php).
 
 ```php
-$var = 'I am a string'
-gettype($var); //"string"
+$typeReflection = new TypeReflection('int');
+$typeReflection->getType(); //"int"
+$typeReflection->getStandardizedType(); //"integer"
 ```
 
-We can also found it in the PHP doc comment. 
+If you work with a variable, you can use `TypeReflection::createFromVariable($variable)`
 
 ```php
-/**
- * @var int
- */
- public $var;
- 
- ```
+$foo = new stdClass();
+$typeReflection = TypeReflection::createFromVariable($foo);
+$typeReflection->getType(); //"stdClass"
+$typeReflection->getStandardizedType(); //"object"
+```
 
 Note the `TypeReflection` is case insensitive.
 

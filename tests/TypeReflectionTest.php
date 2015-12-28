@@ -145,4 +145,44 @@ class TypeReflectionTest extends \PHPUnit_Framework_TestCase
             $this->assertSame($type === 'resource', $typeReflection->isResource(), $type);
         }
     }
+
+    /**
+     * @param mixed $var
+     * @param string $type
+     * @dataProvider provideCreateFromVariable
+     */
+    public function testCreateFromVariable($var, $type)
+    {
+        $typeReflection = TypeReflection::createFromVariable($var);
+        $this->assertSame($type, $typeReflection->getType());
+    }
+
+    /**
+     * @return array
+     */
+    public function provideCreateFromVariable()
+    {
+        return [
+            [
+                'var' => 'i am string',
+                'type' => 'string',
+            ],
+            [
+                'var' => [1, 2, 3],
+                'type' => 'array',
+            ],
+            [
+                'var' => new \stdClass(),
+                'type' => 'stdClass',
+            ],
+            [
+                'var' => null,
+                'type' => 'null',
+            ],
+            [
+                'var' => STDIN,
+                'type' => 'resource',
+            ]
+        ];
+    }
 }
