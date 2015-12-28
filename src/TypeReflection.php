@@ -24,6 +24,7 @@ class TypeReflection
     const ARRAY_TYPE = 'array';
     const OBJECT_TYPE = 'object';
     const RESOURCE_TYPE = 'resource';
+    const CALLABLE_TYPE = 'callable';
     const UNKNOWN_TYPE = 'unknown type';
 
     /**
@@ -83,6 +84,9 @@ class TypeReflection
         ),
         self::RESOURCE_TYPE => array(
             'resource',
+        ),
+        self::CALLABLE_TYPE => array(
+            'callable',
         ),
     );
 
@@ -329,6 +333,18 @@ class TypeReflection
     public function isResource()
     {
         return $this->is(self::RESOURCE_TYPE);
+    }
+
+    /**
+     * Indicates whether the reflected type is callable.
+     * Valid values are:
+     *  - callable
+     *
+     * @return bool
+     */
+    public function isCallable()
+    {
+        return $this->is(self::CALLABLE_TYPE);
     }
 
     /**

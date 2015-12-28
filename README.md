@@ -236,6 +236,7 @@ Note the `TypeReflection` is case insensitive.
  - `array`
  - `object`
  - `resource`
+ - `callable`
  - `unknown type`
 
 #### Valid any type
@@ -342,6 +343,13 @@ $typeReflection->isObject(); //true
 ```php
 $typeReflection = new TypeReflection('resource');
 $typeReflection->isResource(); //true
+```
+
+##### callable
+
+```php
+$typeReflection = new TypeReflection('callable');
+$typeReflection->isCallable(); //true
 ```
 
 ##### void

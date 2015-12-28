@@ -22,6 +22,7 @@ class TypeReflectionTest extends \PHPUnit_Framework_TestCase
         'object' => 'object',
         'Datetime' => 'object',
         'resource' => 'resource',
+        'callable' => 'callable',
         'invalid' => 'unknown type'
 
     ];
@@ -143,6 +144,14 @@ class TypeReflectionTest extends \PHPUnit_Framework_TestCase
         foreach($this->types as $type => $standard){
             $typeReflection = new TypeReflection($type);
             $this->assertSame($type === 'resource', $typeReflection->isResource(), $type);
+        }
+    }
+
+    public function tesIsCallable()
+    {
+        foreach($this->types as $type => $standard){
+            $typeReflection = new TypeReflection($type);
+            $this->assertSame($type === 'callable', $typeReflection->isCallable(), $type);
         }
     }
 
