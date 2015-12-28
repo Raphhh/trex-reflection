@@ -9,6 +9,7 @@
 [![Reference Status](https://www.versioneye.com/php/raphhh:trex-reflection/reference_badge.svg?style=flat)](https://www.versioneye.com/php/raphhh:trex-reflection/references)
 [![License](https://poser.pugx.org/raphhh/trex-reflection/license.svg)](https://packagist.org/packages/raphhh/trex-reflection)
 
+PHP tool to reflect callables an types.
 
 
 ## Installation
