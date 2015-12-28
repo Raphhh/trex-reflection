@@ -1,6 +1,8 @@
 <?php
 namespace TRex\Reflection;
 
+use \InvalidArgumentException;
+
 
 /**
  * TypeReflection reflect the types.
@@ -390,8 +392,15 @@ class TypeReflection
      * @param string $standardizeType
      * @return array
      */
-    private function getTypeMapping($standardizeType = '')
+    private function getTypeMapping($standardizeType)
     {
+        if(!isset($this->getTypeMappingList()[$standardizeType])){
+            throw new InvalidArgumentException(sprintf(
+                '$standardizeType not valid. Should be on of the values: %s. "%s" given.',
+                json_encode($this->getStandardizedTypes()),
+                $standardizeType
+            ));
+        }
         return $this->getTypeMappingList()[$standardizeType];
     }
 

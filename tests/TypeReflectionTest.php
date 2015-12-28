@@ -155,6 +155,17 @@ class TypeReflectionTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+    public function testIsWithoutValidStandardizedType()
+    {
+        $typeReflection = new TypeReflection('string');
+
+        $this->setExpectedException(
+            'InvalidArgumentException',
+            '$standardizeType not valid. Should be on of the values: ["void","mixed","null","boolean","string","integer","float","number","scalar","array","object","resource","callable"]. "foo" given.'
+        );
+        $this->assertFalse($typeReflection->is('foo'));
+    }
+
     /**
      * @param mixed $var
      * @param string $type
