@@ -63,7 +63,7 @@ $reflect->isStaticMethod(); //true
 ```php
 $reflect = new CallableReflection(array(new \DateTime(), 'modify'));
 $reflect->isMethod(); //true
-$reflect->isInvokedObject(); //true
+$reflect->isInstanceMethod(); //true
 ```
 
 ##### Invoked object
@@ -73,7 +73,7 @@ class Bar{
 }
 
 $reflect = new CallableReflection(new Bar());
-$reflect->isInstanceMethod(); //true
+$reflect->isInvokedObject(); //true
 ```
 
 #### Retrieve contexts
