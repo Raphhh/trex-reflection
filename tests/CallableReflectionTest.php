@@ -648,6 +648,34 @@ class CallableReflectionTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('TRex\Reflection\resources\Callback', $reflectedCallable->getObject());
     }
 
+    public function testToStringForFunction() {
+        $reflectedCallable = new CallableReflection($this->getFunction());
+        $this->assertSame('is_string', (string) $reflectedCallable);
+    }
+
+    public function testToStringForInstanceMethod() {
+        $reflectedCallable = new CallableReflection($this->getInstanceMethod());
+        $this->assertSame('TRex\Reflection\resources\Callback::foo', (string) $reflectedCallable);
+    }
+
+    public function testToStringForStaticMethod() {
+        $reflectedCallable = new CallableReflection($this->getStaticMethod1());
+        $this->assertSame('TRex\Reflection\resources\Callback::bar', (string) $reflectedCallable);
+
+        $reflectedCallable = new CallableReflection($this->getStaticMethod2());
+        $this->assertSame('TRex\Reflection\resources\Callback::bar', (string) $reflectedCallable);
+    }
+
+    public function testToStringForInvokedObject() {
+        $reflectedCallable = new CallableReflection($this->getInvokedObject());
+        $this->assertSame('TRex\Reflection\resources\Callback::__invoke', (string) $reflectedCallable);
+    }
+
+    public function testToStringForClosure() {
+        $reflectedCallable = new CallableReflection($this->getClosure());
+        $this->assertSame('*CLOSURE*', (string) $reflectedCallable);
+    }
+
     /**
      * @return callable
      */

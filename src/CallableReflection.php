@@ -375,4 +375,25 @@ class CallableReflection
         }
         return $params;
     }
+
+    public function toString() {
+        switch ($this->getType()) {
+            case self::FUNCTION_TYPE:
+                return $this->getFunctionName();
+            case self::INSTANCE_METHOD_TYPE:
+            case self::STATIC_METHOD_TYPE:
+                return $this->getClassName() . '::' . $this->getMethodName();
+            case self::INVOKED_OBJECT_TYPE:
+                return $this->getClassName() . '::__invoke';
+            case self::CLOSURE_TYPE:
+                return '*CLOSURE*';
+            case self::ERROR_TYPE:
+            default:
+                return '*ERROR*';
+        }
+    }
+
+    public function __toString() {
+        return $this->toString();
+    }
 }
